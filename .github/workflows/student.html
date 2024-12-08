@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Title</title>
+    </head>
+    <body>
+        <form action ="{{url_for('add_student') }}" method="POST">
+            <p>姓名<input type="text" name = "nm"/></p>
+            <p>地址<textarea name="addr"></textarea></p>
+            <p>城市<input type="text" name="city"/></p>
+            <p>邮编<input type="text" name="pin"></p>
+            <input type="submit" value="提交"/>
+        </form>    
+    </body>
+</html>
