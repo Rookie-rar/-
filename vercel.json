@@ -8,7 +8,7 @@
     ],
     "routes": [
       {
-        "src": "/show(.*)",
+        "src": "/(.*)",
         "dest": "main.py"
       }
     ]
