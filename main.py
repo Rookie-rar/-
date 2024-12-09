@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return "hello world"
+    return render_template("hello.html")
 
 @app.route('/creat')
 def create_student():
@@ -35,7 +35,7 @@ def add_student():
         return render_template("result.html",msg = msg)
     con.close()
 
-@app.route('/show')
+@app.route('/show',methods = ["POST"])
 def show_student():
     con = sqlite3.connect("database.db")
     con.row_factory=sqlite3.Row
