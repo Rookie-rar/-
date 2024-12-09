@@ -3,9 +3,9 @@ from flask import Flask,request,render_template,url_for
 
 app = Flask(__name__)
 
-# con = sqlite3.connect('database.db')
-# con.execute('create table student(name text,addr text,city text,pin text)')
-# con.close()
+con = sqlite3.connect('database.db')
+con.execute('create table student(name text,addr text,city text,pin text)')
+con.close()
 
 @app.route('/')
 def hello_world():
