@@ -1,11 +1,20 @@
 import sqlite3
 from flask import Flask,request,render_template,url_for
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 app = Flask(__name__)
 
 # con = sqlite3.connect('database.db')
 # con.execute('create table student(name text,addr text,city text,pin text)')
 # con.close()
+
+limiter = Limiter(
+    get_remote_address,  
+    app=app,
+    default_limits=["5 per minute"]  
+)
+
 
 @app.route('/')
 def hello_world():
@@ -35,7 +44,9 @@ def add_student():
         return render_template("result.html",msg = msg)
     con.close()
 
-@app.route('/show',methods = ["POST"])
+
+@app.route('/show',methods = ['POST','GET'])
+@limiter.limit("10 per minute")
 def show_student():
     con = sqlite3.connect("database.db")
     con.row_factory=sqlite3.Row
