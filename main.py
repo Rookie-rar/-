@@ -15,6 +15,9 @@ limiter = Limiter(
     default_limits=["5 per minute"]  
 )
 
+@app.errorhandler(429)
+def handle_too_many_requests(error):
+    return render_template("error.html")
 
 @app.route('/')
 def hello_world():
@@ -46,7 +49,7 @@ def add_student():
 
 
 @app.route('/show',methods = ['POST','GET'])
-@limiter.limit("10 per minute")
+@limiter.limit("10 per second")
 def show_student():
     con = sqlite3.connect("database.db")
     con.row_factory=sqlite3.Row
