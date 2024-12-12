@@ -49,7 +49,7 @@ def add_student():
 
 
 @app.route('/show',methods = ['POST','GET'])
-@limiter.limit("10 per second")
+@limiter.limit("1 per second")
 def show_student():
     con = sqlite3.connect("database.db")
     con.row_factory=sqlite3.Row
